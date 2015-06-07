@@ -41,7 +41,7 @@ rescue LoadError
 end
 
 begin
-  require 'zip/zip'
+  require 'zip'
 rescue LoadError
   raise 'You must "sudo gem install rubyzip"'
 end
@@ -313,7 +313,7 @@ end
 def zipit(fn, prefix = "")
   puts "#{cmd_color('Zipping')} #{dir_color(fn)}"
   dst = "#{fn}.zip"
-  Zip::ZipFile.open(dst, Zip::ZipFile::CREATE) { |zipfile|
+  Zip::File.open(dst, Zip::File::CREATE) { |zipfile|
     Find.find(fn) do |f|
       next if File.directory? f
       r = f[fn.size+1..-1]
