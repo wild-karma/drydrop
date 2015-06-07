@@ -94,7 +94,7 @@ end
 
 def my_mkdir(dir)
   puts "#{cmd_color('Creating directory')} #{dir_color(dir)}"
-  mkdir dir, {:verbose => false}
+  mkdir_p dir, {:verbose => false}
 end
 
 def dep_dir(src)
@@ -106,7 +106,6 @@ def dep_file(src)
 end
 
 def sanitize_path(path)
-  path = path.gsub('/', '\\') if WIN
   path = path.gsub('sudo ', '') if WIN
   path
 end
@@ -328,7 +327,6 @@ end
 def bake(name)
   $modules = []
   git_status = test_git_status()
-  die('not under git version control!') if git_status != "0"
 
   version = git_version()
 
